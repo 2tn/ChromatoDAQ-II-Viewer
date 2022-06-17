@@ -1,0 +1,85 @@
+﻿<Window x:Class="ChromatoDAQ_II_Viewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChromatoDAQ_II_Viewer"
+        xmlns:charting="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="{Binding WindowTitle}">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <DockPanel>
+        <StackPanel Margin="5" Width="300">
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Margin" Value="0,5,0,5" />
+                    </Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Margin" Value="0,5,20,5" />
+                        <Setter Property="FontSize" Value="16" />
+                    </Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="0,5,0,5" />
+                    </Style>
+                    <Style TargetType="{x:Type CheckBox}">
+                        <Setter Property="Margin" Value="0,5,0,5" />
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="IPアドレス"/>
+                <DockPanel Grid.Column="1" Grid.Row="0">
+                    <TextBox FontSize="16" Text="{Binding IPAddress}" MinWidth="100"/>
+                </DockPanel>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="保存先"/>
+                <DockPanel Grid.Column="1" Grid.Row="1">
+                    <Button Width="20" Content="..." DockPanel.Dock="Right" Command="{Binding SelectFolderCommand}"/>
+                    <Border Width="10" DockPanel.Dock="Right"/>
+                    <TextBox FontSize="16" Text="{Binding SavePath}" MinWidth="100"/>
+                </DockPanel>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="ファイル名"/>
+                <DockPanel Grid.Column="1" Grid.Row="2">
+                    <TextBlock Text=".csv" Margin="5" DockPanel.Dock="Right"/>
+                    <TextBox FontSize="16" Text="{Binding SeriesName}"/>
+                </DockPanel>
+                <CheckBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Channel 1" IsChecked="{Binding Channel1Checked}"/>
+                <CheckBox Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Channel 2" IsChecked="{Binding Channel2Checked}"/>
+
+                <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="{Binding StartStatusText}" Margin="5" Command="{Binding StartCommand}" Foreground="White">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Green"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StartBackground}" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </StackPanel>
+        <DockPanel LastChildFill="True" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Margin="5">
+            <WindowsFormsHost>
+                <charting:Chart x:Name="chartB_view"/>
+            </WindowsFormsHost>
+        </DockPanel>
+    </DockPanel>
+</Window>
