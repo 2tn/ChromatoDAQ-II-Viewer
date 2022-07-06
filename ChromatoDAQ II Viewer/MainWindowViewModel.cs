@@ -94,7 +94,7 @@ namespace ChromatoDAQ_II_Viewer
             ChartCounter = length;
             var timeMax = DataList[DataList.Count - 1].Time;
             if (timeMax > 30)
-                chart.setTimeMax((Math.Ceiling(timeMax / 10)) * 10);
+                chart.setTimeMax((Math.Ceiling(timeMax / 30)) * 30);
         }
 
         public void ClearChart()

@@ -26,9 +26,9 @@ namespace ChromatoDAQ_II_Viewer
             chart.ChartAreas[0].AxisY.Title = "Voltage [mV]";
             chart.ChartAreas[0].AxisY.TitleFont = titleFont;
             chart.ChartAreas[0].AxisY.LabelStyle.Font = labelFont;
-            chart.ChartAreas[0].AxisY.Interval = 500;
-            chart.ChartAreas[0].AxisY.Minimum = -1500;
-            chart.ChartAreas[0].AxisY.Maximum = 1500;
+            chart.ChartAreas[0].AxisY.Interval = 0.5;
+            chart.ChartAreas[0].AxisY.Minimum = -2;
+            chart.ChartAreas[0].AxisY.Maximum = 2;
 
 
             series1 = new Series();
