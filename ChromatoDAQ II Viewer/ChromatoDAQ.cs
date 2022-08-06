@@ -234,7 +234,7 @@ namespace ChromatoDAQ_II_Viewer
                     {
                         // Debug.WriteLine(line);
                         if (line == "C" || line == "B") continue;
-                        var result = Regex.Match(line, " *(\\d*), *(\\d*), *(\\d*)");
+                        var result = Regex.Match(line, " *(-?\\d*), *(-?\\d*), *(-?\\d*)");
                         if (result.Groups.Count == 4)
                         {
                             var data = new Data((double)time / 1000, double.Parse(result.Groups[1].Value) * coeff, double.Parse(result.Groups[2].Value) * coeff, int.Parse(result.Groups[3].Value));
