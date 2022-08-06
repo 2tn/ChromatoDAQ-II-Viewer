@@ -27,6 +27,7 @@ namespace ChromatoDAQ_II_Viewer
             chart.ChartAreas[0].AxisX.LabelStyle.Font = labelFont;
             chart.ChartAreas[0].AxisX.Minimum = 0;
             chart.ChartAreas[0].AxisX.Maximum = 30;
+            chart.ChartAreas[0].AxisX.Interval = 5;
             chart.ChartAreas[0].AxisY.Title = "Voltage [mV]";
             chart.ChartAreas[0].AxisY.TitleFont = titleFont;
             chart.ChartAreas[0].AxisY.LabelStyle.Font = labelFont;
@@ -90,7 +91,10 @@ namespace ChromatoDAQ_II_Viewer
         public void setTimeMax(double time)
         {
             if (time > chart.ChartAreas[0].AxisX.Minimum)
+            {
                 chart.ChartAreas[0].AxisX.Maximum = time;
+                chart.ChartAreas[0].AxisX.Interval = time / 6;
+            }
         }
 
         public void setYRange(double min, double max, double interval = -1)
