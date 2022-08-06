@@ -43,6 +43,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="IPアドレス"/>
                 <DockPanel Grid.Column="1" Grid.Row="0">
@@ -61,8 +62,8 @@
                 </DockPanel>
                 <CheckBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Channel 1" IsChecked="{Binding Channel1Checked}"/>
                 <CheckBox Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Channel 2" IsChecked="{Binding Channel2Checked}"/>
-
-                <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="{Binding StartStatusText}" Margin="5" Command="{Binding StartCommand}" Foreground="White">
+                <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="{Binding YRangeText}" Command="{Binding YRangeCommand}" Margin="5" Width="100" Height="20" HorizontalAlignment="Left"/>
+                <Button Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Content="{Binding StartStatusText}" Margin="5" Command="{Binding StartCommand}" Foreground="White">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="Green"/>

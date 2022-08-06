@@ -23,6 +23,7 @@ namespace ChromatoDAQ_II_Viewer
             chromatoDAQ = new();
             StartCommand = new StartCommand(this);
             SelectFolderCommand = new SelectFolderCommand(this);
+            YRangeCommand = new YRangeCommand(this);
         }
 
         public string WindowTitle { get { return $"ChromatoDAQ_II_Viewer Version: {Assembly.GetExecutingAssembly().GetName().Version.ToString(2)}"; } }
@@ -50,6 +51,10 @@ namespace ChromatoDAQ_II_Viewer
         public string StartStatusText
         { get { return startStatusText; } set { startStatusText = value; OnPropertyChanged(nameof(StartStatusText)); } }
 
+        public string yRangeText = "Y軸範囲拡大";
+        public string YRangeText
+        { get { return yRangeText; } set { yRangeText = value; OnPropertyChanged(nameof(YRangeText)); } }
+        
         private bool channel1Checked = true;
         public bool Channel1Checked
         {
@@ -75,6 +80,8 @@ namespace ChromatoDAQ_II_Viewer
         public SelectFolderCommand SelectFolderCommand
         { get; private set; }
         public StartCommand StartCommand
+        { get; private set; }
+        public YRangeCommand YRangeCommand
         { get; private set; }
 
         private bool startBackground = false;

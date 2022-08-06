@@ -10,6 +10,10 @@ namespace ChromatoDAQ_II_Viewer
         private MainWindowViewModel vm;
         private Chart chart;
         public Series series1, series2;
+        public double YRangeSmall = 2;
+        public double YRangeLarge = 10;
+        public double YRangeSmallInterval = 0.5;
+        public double YRangeLargeInterval = 2;
         Font labelFont = new Font("Arial", 10);
         Font titleFont = new Font("Arial", 12);
         public CombinationChart(MainWindowViewModel viewModel, Chart chart)
@@ -26,9 +30,9 @@ namespace ChromatoDAQ_II_Viewer
             chart.ChartAreas[0].AxisY.Title = "Voltage [mV]";
             chart.ChartAreas[0].AxisY.TitleFont = titleFont;
             chart.ChartAreas[0].AxisY.LabelStyle.Font = labelFont;
-            chart.ChartAreas[0].AxisY.Interval = 0.5;
-            chart.ChartAreas[0].AxisY.Minimum = -2;
-            chart.ChartAreas[0].AxisY.Maximum = 2;
+            chart.ChartAreas[0].AxisY.Interval = YRangeSmallInterval;
+            chart.ChartAreas[0].AxisY.Minimum = -YRangeSmall;
+            chart.ChartAreas[0].AxisY.Maximum = YRangeSmall;
 
 
             series1 = new Series();
@@ -87,6 +91,19 @@ namespace ChromatoDAQ_II_Viewer
         {
             if (time > chart.ChartAreas[0].AxisX.Minimum)
                 chart.ChartAreas[0].AxisX.Maximum = time;
+        }
+
+        public void setYRange(double min, double max, double interval = -1)
+        {
+            chart.ChartAreas[0].AxisY.Minimum = min;
+            chart.ChartAreas[0].AxisY.Maximum = max;
+            if (interval != -1)
+                chart.ChartAreas[0].AxisY.Interval = interval;
+        }
+
+        public double[] getYRange()
+        {
+            return new double[] { chart.ChartAreas[0].AxisY.Minimum, chart.ChartAreas[0].AxisY.Maximum };
         }
 
         private bool chart1Visible = true;
